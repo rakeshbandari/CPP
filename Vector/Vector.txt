@@ -1,0 +1,7 @@
+// Create a vector containing n 
+//vectors of size m, all u=initialized with 0
+vector<vector<int> > vec( n , vector<int> (m, 0)); 
+
+// Create a vector with pair 
+vector< pair <int,int> > vect;
+vect.push_back( make_pair(arr[i],arr1[i]) );

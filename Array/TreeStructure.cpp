@@ -1,0 +1,89 @@
+#include <iostream>
+#include <string>
+using namespace std;
+ 
+// Data structure to store a binary tree node
+struct Node
+{
+    int data;
+    Node *left, *right;
+ 
+    Node(int data)
+    {
+        this->data = data;
+        this->left = this->right = nullptr;
+    }
+};
+ 
+struct Trunk
+{
+    Trunk *prev;
+    string str;
+ 
+    Trunk(Trunk *prev, string str)
+    {
+        this->prev = prev;
+        this->str = str;
+    }
+};
+ 
+// Helper function to print branches of the binary tree
+void showTrunks(Trunk *p)
+{
+    if (p == nullptr) {
+        return;
+    }
+ 
+    showTrunks(p->prev);
+    cout << p->str;
+}
+ 
+void printBT(const std::string& prefix, const BSTNode* node, bool isLeft)
+{
+    if( node != nullptr )
+    {
+        std::cout << prefix;
+
+        std::cout << (isLeft ? "+--" : "+--" );
+
+        // print the value of the node
+        std::cout << node->m_val << std::endl;
+
+        // enter the next tree level - left and right branch
+        printBT( prefix + (isLeft ? "¦   " : "    "), node->m_left, true);
+        printBT( prefix + (isLeft ? "¦   " : "    "), node->m_right, false);
+    }
+}
+
+void printBT(const BSTNode* node)
+{
+    printBT("", node, false);    
+}
+
+// pass the root node of your binary tree
+printBT(root);
+ 
+int main()
+{
+    // Construct above tree
+    Node* root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->left->right = new Node(5);
+    root->right->left = new Node(6);
+    root->right->right = new Node(7);
+    root->left->left->left = new Node(8);
+    root->left->left->right = new Node(9);
+    root->left->right->left = new Node(10);
+    root->left->right->right = new Node(11);
+    root->right->left->left = new Node(12);
+    root->right->left->right = new Node(13);
+    root->right->right->left = new Node(14);
+    root->right->right->right = new Node(15);
+ 
+    // print constructed binary tree
+    printTree(root, nullptr, false);
+ 
+    return 0;
+}
